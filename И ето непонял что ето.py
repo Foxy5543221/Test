@@ -1,32 +1,31 @@
-import command
 import customtkinter as ctk
-import variable
 
-BTC_TO_UAN = 4119907.27
-ETH_TO_UAN = 151023.61
-USDT_TO_UAN = 42.12
+BTC_TO_UAH = 4119907.27
+ETH_TO_UAH = 151023.61
+USDT_TO_UAH = 42.12
 
 def convert():
     amount = float(entry_amount.get())
     from_currency = from_currency_var.get()
     to_currency = to_currency_var.get()
+    # Якщо конвертуємо з криптовалюти в UAH
     if from_currency == "BTC":
-        amount_in_uan = amount * BTC_TO_UAN
+        amount_in_uah = amount * BTC_TO_UAH
     elif from_currency == "ETH":
-        amount_in_uan = amount * ETH_TO_UAN
+        amount_in_uah = amount * ETH_TO_UAH
     elif from_currency == "USDT":
-        amount_in_uan = amount * USDT_TO_UAN
-    elif from_currency == "UAN":
-        amount_in_uan = amount
-
+        amount_in_uah = amount * USDT_TO_UAH
+    elif from_currency == "UAH":  # Якщо конвертуємо з гривні
+        amount_in_uah = amount
+    # Якщо конвертуємо з UAH у криптовалюту
     if to_currency == "BTC":
-        converted_amount = amount_in_uan / BTC_TO_UAN
-    elif from_currency == "ETH":
-        converted_amount = amount_in_uan / ETH_TO_UAN
-    elif from_currency == "USDT":
-        converted_amount = amount_in_uan / USDT_TO_UAN
-    elif from_currency == "UAN":
-        converted_amount = amount_in_uan
+        converted_amount = amount_in_uah / BTC_TO_UAH
+    elif to_currency == "ETH":
+        converted_amount = amount_in_uah / ETH_TO_UAH
+    elif to_currency == "USDT":
+        converted_amount = amount_in_uah / USDT_TO_UAH
+    elif to_currency == "UAH":  # Якщо конвертуємо в гривні
+        converted_amount = amount_in_uah
 
     result_label.configure(text=f"{amount} {from_currency} = {converted_amount:.4f} {to_currency}")
 
