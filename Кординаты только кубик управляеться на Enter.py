@@ -1,0 +1,23 @@
+import pygame
+
+
+pygame.init()
+
+screen = pygame.display.set_mode((800,600))
+pygame.display.set_caption("Рух об'єкта за допомогою Enter")
+rect_position = pygame.math.Vector2(100,100)
+object_size = 100
+object_color = (255,0,0)
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                rect_position.x +=100
+                rect_position.y +=200
+    screen.fill((255,255,255))
+    pygame.draw.rect(screen, object_color, (rect_position.x, rect_position.y, object_size, object_size))
+    pygame.display.flip()
+pygame.quit()
